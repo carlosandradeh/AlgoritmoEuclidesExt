@@ -2,6 +2,9 @@ package com.ciencias.modelado.rsa;
 
 import java.math.BigInteger;
 
+/**
+ * Clase principal del programa.
+ */
 public class Main {
     // Entero positivo A.
     private static BigInteger a;
@@ -45,7 +48,7 @@ public class Main {
 
         // Verificamos que A y B no sean negativos.
         BigInteger cero = new BigInteger("0");
-        if (a.compareTo(cero) < 0  || b.compareTo(cero) < 0) 
+        if (a.compareTo(cero) < 0 || b.compareTo(cero) < 0)
             uso();
     }
 
@@ -55,12 +58,30 @@ public class Main {
      * @param args Parámetros necesarios para la ejecución correcta del programa.
      */
     public static void main(String[] args) {
-        //Revisamos que los argumentos sean los adecuados.
+        // Revisamos que los argumentos sean los adecuados.
         revisaArgumentos(args);
 
-        //Imprimimos.
-        System.out.println("Soy a: " + a);
-        System.out.println("Soy b: " + b);
-        System.out.println("Soy p: " + p);
+        // Implementamos el Algoritmo de Euclides
+        BigInteger[] valores = Euclides.euclidesExtendido(a, b, p);
+        BigInteger mcd = valores[0];
+        BigInteger s = valores[1];
+        BigInteger t = valores[2];
+
+        // Impresión de los resultados
+        System.out.println("Valores:");
+        System.out.println("  A = " + a);
+        System.out.println("  B = " + b);
+        System.out.println("  P = " + p);
+
+        System.out.println("Máximo Común Divisor:");
+        System.out.printf("  MCD(%d, %d) = %d \n", a, b, mcd);
+
+        System.out.println("Coeficientes:");
+        System.out.println("  C1 = " + s);
+        System.out.println("  C2 = " + t);
+
+        System.out.println("Combinación Lineal:");
+        System.out.printf("  %d * %d + %d * %d = %d \n", a, s, b, t, mcd);
+
     }
 }
