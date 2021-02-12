@@ -1,15 +1,31 @@
-RSA.
+Algoritmo de Euclides Extendido.
 ====================
 ### Authors 
 - Carlos Andrade Hernández
 - Demian Alejandro Monterrubio Acosta
 
 ### Introducción
-En criptografía, RSA (Rivest, Shamir y Adleman) es un sistema criptográfico de clave pública desarrollado en 1979, que utiliza factorización de números enteros. Es el primer y más utilizado algoritmo de este tipo y es válido tanto para cifrar como para firmar digitalmente.
+El algoritmo de Euclides es un método antiguo y eficiente para calcular el máximo común divisor (MCD). Fue originalmente descrito por Euclides en su obra Elementos. El algoritmo de Euclides extendido es una ligera modificación que permite además expresar al máximo común divisor como una combinación lineal. Este algoritmo tiene aplicaciones en diversas áreas como álgebra, teoría de números y ciencias de la computación, entre otras. Con unas ligeras modificaciones suele ser utilizado en computadoras electrónicas debido a su gran eficiencia.
 
-La seguridad de este algoritmo radica en el problema de la factorización de números enteros. Los mensajes enviados se representan mediante números, y el funcionamiento se basa en el producto, conocido, de dos números primos grandes elegidos al azar y mantenidos en secreto. Actualmente estos primos son del orden de 10^300, y se prevé que su tamaño siempre crezca con el aumento de la capacidad de cálculo de los ordenadores.
+### Entrada
+$ java -jar target/euclidesExtendido.jar A B P
+A -- Numero entero positivo
+B -- Numero entero positivo
+P -- Numero Primo
 
-Como en todo sistema de clave pública, cada usuario posee dos claves de cifrado: una pública y otra privada. Cuando se quiere enviar un mensaje, el emisor busca la clave pública del receptor, cifra su mensaje con esa clave, y una vez que el mensaje cifrado llega al receptor, este se ocupa de descifrarlo usando su clave privada.
+### Salida
+Valores:
+  A
+  B
+  P
+Máximo Común Divisor:
+  MCD(A, B) 
+Coeficientes:
+  C1
+  C2
+Combinación Lineal:
+  A * C1 + B * C2 = MCD (mod P)
+
 
 ### Para correr este programa:
 Maven Website : https://maven.apache.org/
@@ -19,4 +35,7 @@ Se debe tener instalado Maven : https://maven.apache.org/download.cgi
 $ mvn clean
 $ mvn compile
 $ mvn install  
+
+$ java -jar target/euclidesExtendido.jar A B P
+
 ```
