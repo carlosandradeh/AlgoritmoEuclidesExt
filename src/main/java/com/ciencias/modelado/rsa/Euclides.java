@@ -111,7 +111,7 @@ public class Euclides {
         // Verificamos el orden de entrada de los argumentos para regresar el arreglo en
         // orden.
         if (orden)
-            return new BigInteger[] { r2, s2, t2 };
-        return new BigInteger[] { r2, t2, s2 };
+            return new BigInteger[] { r2, s2.mod(p), t2.mod(p) };
+        return new BigInteger[] { r2, t2.mod(p), s2.mod(p) };
     }
 }
