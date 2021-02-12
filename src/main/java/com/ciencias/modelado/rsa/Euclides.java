@@ -9,8 +9,9 @@ import java.math.BigInteger;
 public class Euclides {
 
     /**
-     * Algoritmo de Euclides extendido. Regresa el máximo compun divisor de dos números y su combinación lineal.
-     * MCD(a, b) = a(s) + b(t).
+     * Algoritmo de Euclides extendido. Regresa el máximo compun divisor de dos
+     * números y su combinación lineal. MCD(a, b) = a(s) + b(t).
+     * 
      * @param a Numero entero positivo arbitrariamente grande.
      * @param b Numero entero positivo arbitrariamente grande.
      * @param p NUmero primo arbitrariamente grande.
@@ -21,13 +22,12 @@ public class Euclides {
         if (a == null || b == null)
             throw new IllegalArgumentException("No puedes usar null en el algoritmo de Euclides");
 
-        // TODO: Implementación del Algoritmo Extendido de Euclides.
         BigInteger ONE = BigInteger.ONE;
         BigInteger ZERO = BigInteger.ZERO;
-        
+
         /*
-         * Obtenemos el valor positivo del número primo, 
-         * podemos hacer esto por que la operación mod p es equivalente a mod -p.
+         * Obtenemos el valor positivo del número primo, podemos hacer esto por que la
+         * operación mod p es equivalente a mod -p.
          */
         BigInteger p = prime.abs();
 
@@ -64,24 +64,28 @@ public class Euclides {
         boolean orden = false;
 
         // MCD(0, 0) no está matemáticamente definido.
-        if(r1.equals(ZERO) && r2.equals(ZERO))
+        if (r1.equals(ZERO) && r2.equals(ZERO))
             throw new IllegalArgumentException("MCD(0, 0) is not defined.");
-        // Si uno de los enteros es 0, entonces el MCD(x, 0) = x, siempre que x no sea 0.
-        if(r1.equals(ZERO))
-            return new BigInteger[]{r2, ZERO, ONE};
-        if(r2.equals(ZERO))
-            return new BigInteger[]{r1, ONE, ZERO};
+        // Si uno de los enteros es 0, entonces el MCD(x, 0) = x, siempre que x no sea
+        // 0.
+        if (r1.equals(ZERO))
+            return new BigInteger[] { r2, ZERO, ONE };
+        if (r2.equals(ZERO))
+            return new BigInteger[] { r1, ONE, ZERO };
 
-        /* Nos aseguramos de estar tomando valores positivos equivalentes a a y b (mod p).
-         * Necesitamos trabajar con números positivos para el correcto funcionamiento del programa.
+        /*
+         * Nos aseguramos de estar tomando valores positivos equivalentes a a y b (mod
+         * p). Necesitamos trabajar con números positivos para el correcto
+         * funcionamiento del programa.
          */
-        if(r1.compareTo(ZERO) < 0)
+        if (r1.compareTo(ZERO) < 0)
             r1 = r1.add(p);
-        if(r2.compareTo(ZERO) < 0)
+        if (r2.compareTo(ZERO) < 0)
             r2 = r2.add(p);
 
-        // Nos aseguramos que r2 > r1. En caso que no lo sean, intercambiamos los valores.
-        if(r2.compareTo(r1) < 0){
+        // Nos aseguramos que r2 > r1. En caso que no lo sean, intercambiamos los
+        // valores.
+        if (r2.compareTo(r1) < 0) {
             BigInteger aux = r1;
             r1 = r2;
             r2 = aux;
@@ -90,8 +94,8 @@ public class Euclides {
         }
 
         // Algoritmo de Euclides extendido.
-        do{
-            r = r2 .mod(r1);
+        do {
+            r = r2.mod(r1);
             q1 = (r2.subtract(r)).divide(r1);
             s = s2.subtract(q1.multiply(s1));
             t = t2.subtract(q1.multiply(t1));
@@ -102,11 +106,12 @@ public class Euclides {
             s1 = s;
             t2 = t1;
             t1 = t;
-        }while(!r.equals(ZERO));
+        } while (!r.equals(ZERO));
 
-        // Verificamos el orden de entrada de los argumentos para regresar el arreglo en orden.
-        if(orden)
-            return new BigInteger[]{r2, s2, t2};
-        return new BigInteger[]{r2, t2, s2};
+        // Verificamos el orden de entrada de los argumentos para regresar el arreglo en
+        // orden.
+        if (orden)
+            return new BigInteger[] { r2, s2, t2 };
+        return new BigInteger[] { r2, t2, s2 };
     }
 }
