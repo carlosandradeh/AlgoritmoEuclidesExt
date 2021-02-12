@@ -47,7 +47,7 @@ public class Main {
         }
 
         // Verificamos que A y B no sean negativos.
-        BigInteger cero = new BigInteger("0");
+        BigInteger cero = BigInteger.ZERO;
         if (a.compareTo(cero) < 0 || b.compareTo(cero) < 0)
             uso();
     }
@@ -62,7 +62,12 @@ public class Main {
         revisaArgumentos(args);
 
         // Implementamos el Algoritmo de Euclides
-        BigInteger[] valores = Euclides.euclidesExtendido(a, b, p);
+        BigInteger[] valores = new BigInteger[3];
+        try {
+            valores = Euclides.euclidesExtendido(a, b, p);
+        } catch (IllegalArgumentException e) {
+            uso();
+        }
         BigInteger mcd = valores[0];
         BigInteger s = valores[1];
         BigInteger t = valores[2];
@@ -81,7 +86,7 @@ public class Main {
         System.out.println("  C2 = " + t);
 
         System.out.println("Combinación Lineal:");
-        System.out.printf("  %d * %d + %d * %d = %d \n", a, s, b, t, mcd);
+        System.out.printf("  %d * %d + %d * %d = %d (mod %d)\n", a, s, b, t, mcd, p);
 
     }
 }
